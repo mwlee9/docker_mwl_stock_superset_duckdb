@@ -1,0 +1,26 @@
+version: 1
+default_environment: dev
+environments:
+  - name: dev
+    env:
+      TMP_PATH: /tmp
+  - name: staging
+    env:
+      TMP_PATH: /tmp
+  - name: docker
+    env:
+      MELTANO_PROJECT_ROOT: /workspaces
+      TMP_PATH: /workspaces/tmp
+  - name: prod
+    env:
+      TMP_PATH: /tmp
+
+plugins:
+  utilities:
+    - name: superset
+      variant: apache
+      pip_url: apache-superset>=1.5.0 markupsafe==2.0.1 Werkzeug==2.0.3 WTForms==2.3.0 duckdb-engine==0.6.8 jinja2<3.1.0 cryptography==3.4.7 Flask-WTF==1.0.1
+      config:
+        ENABLE_PROXY_FIX: true
+
+project_id: 0f7b47e6-7268-4193-9522-1773c1ee9fee
